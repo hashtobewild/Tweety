@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tweety
 {
-
     /// <summary>
     /// Exception thrown by Tweety.
     /// </summary>
@@ -12,9 +9,6 @@ namespace Tweety
     {
         internal TweetyException(string message) : base(message)
         {
-
         }
-
-
     }
 }

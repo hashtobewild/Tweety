@@ -5,17 +5,8 @@ namespace Tweety.Models.Twitter
     /// <summary>
     ///
     /// </summary>
-    public class HashtagEntity
+    public class NewEvent_MessageData
     {
-        /// <summary>
-        /// Gets or sets the indices.
-        /// </summary>
-        /// <value>
-        /// The indices.
-        /// </value>
-        [JsonProperty("indices")]
-        public int[] Indices { get; set; }
-
         /// <summary>
         /// Gets or sets the text.
         /// </summary>

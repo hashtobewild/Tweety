@@ -1,58 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Tweety.Models.Twitter
 {
- 
+    /// <summary>
+    ///
+    /// </summary>
     public class MediaEntity
     {
-        public long id { get; set; }
-        public string id_str { get; set; }
-        public int[] indices { get; set; }
-        public string media_url { get; set; }
-        public string media_url_https { get; set; }
-        public string url { get; set; }
-        public string display_url { get; set; }
-        public string expanded_url { get; set; }
-        public string type { get; set; }
-        public Sizes sizes { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the display URL.
+        /// </summary>
+        /// <value>
+        /// The display URL.
+        /// </value>
+        [JsonProperty("display_url")]
+        public string DisplayUrl { get; set; }
 
-    public class Sizes
-    {
-        public TwitterSizeMedium medium { get; set; }
-        public TwitterSizeThumb thumb { get; set; }
-        public TwitterSizeSmall small { get; set; }
-        public TwitterSizeLarge large { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the expanded URL.
+        /// </summary>
+        /// <value>
+        /// The expanded URL.
+        /// </value>
+        [JsonProperty("expanded_url")]
+        public string ExpandedUrl { get; set; }
 
-    public class TwitterSizeMedium
-    {
-        public int w { get; set; }
-        public int h { get; set; }
-        public string resize { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
-    public class TwitterSizeThumb
-    {
-        public int w { get; set; }
-        public int h { get; set; }
-        public string resize { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the identifier string.
+        /// </summary>
+        /// <value>
+        /// The identifier string.
+        /// </value>
+        [JsonProperty("id_str")]
+        public string IdString { get; set; }
 
-    public class TwitterSizeSmall
-    {
-        public int w { get; set; }
-        public int h { get; set; }
-        public string resize { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the indices.
+        /// </summary>
+        /// <value>
+        /// The indices.
+        /// </value>
+        [JsonProperty("indices")]
+        public int[] Indices { get; set; }
 
-    public class TwitterSizeLarge
-    {
-        public int w { get; set; }
-        public int h { get; set; }
-        public string resize { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the media URL.
+        /// </summary>
+        /// <value>
+        /// The media URL.
+        /// </value>
+        [JsonProperty("media_url")]
+        public string MediaUrl { get; set; }
 
+        /// <summary>
+        /// Gets or sets the media URL HTTPS.
+        /// </summary>
+        /// <value>
+        /// The media URL HTTPS.
+        /// </value>
+        [JsonProperty("media_url_https")]
+        public string MediaUrlHttps { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sizes.
+        /// </summary>
+        /// <value>
+        /// The sizes.
+        /// </value>
+        [JsonProperty("sizes")]
+        public Sizes Sizes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        [JsonProperty("url")]
+        public string Url { get; set; }
+    }
 }

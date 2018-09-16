@@ -5,15 +5,15 @@ namespace Tweety.Models.Twitter
     /// <summary>
     ///
     /// </summary>
-    internal class CRCResponseToken
+    public class Target
     {
         /// <summary>
-        /// Gets or sets the token.
+        /// Gets or sets the recipient identifier.
         /// </summary>
         /// <value>
-        /// The token.
+        /// The recipient identifier.
         /// </value>
-        [JsonProperty("response_token")]
-        public string Token { get; set; }
+        [JsonProperty("recipient_id")]
+        public string RecipientId { get; set; }
     }
 }

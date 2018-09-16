@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Tweety.Models
+﻿namespace Tweety.Models
 {
+    /// <summary>
+    ///
+    /// </summary>
     public enum TwitterEventType
     {
         MessageCreate,

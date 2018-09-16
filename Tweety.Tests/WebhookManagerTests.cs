@@ -1,9 +1,7 @@
-﻿using System;
-using Tweety.Authentication;
-using static Tweety.Tests.TestsConstants;
-using Tweety.Webhooks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tweety.Webhooks;
+using static Tweety.Tests.TestsConstants;
 
 namespace Tweety.Tests
 {
@@ -14,14 +12,12 @@ namespace Tweety.Tests
         [Priority(0)]
         public async Task GetRegisteredWebhookTest()
         {
-
             WebhooksManager webhookManager = new WebhooksManager(AuthContext);
 
             var result = await webhookManager.GetRegisteredWebhooks();
 
             Assert.IsTrue(result.Success);
             Assert.IsTrue(result.Data.Count == 0);
-
         }
 
         [TestMethod]
@@ -39,8 +35,6 @@ namespace Tweety.Tests
             RegsiteredWebhookId = result.Data.Id;
         }
 
-
-
         [TestMethod]
         [Priority(2)]
         public async Task UnregisterWebhookTest()
@@ -51,8 +45,6 @@ namespace Tweety.Tests
 
             Assert.IsTrue(result.Success);
             Assert.IsTrue(result.Data);
-
         }
-
     }
 }

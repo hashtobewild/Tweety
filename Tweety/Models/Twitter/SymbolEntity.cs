@@ -1,14 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Tweety.Models.Twitter
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class SymbolEntity
     {
+        /// <summary>
+        /// Gets or sets the indices.
+        /// </summary>
+        /// <value>
+        /// The indices.
+        /// </value>
+        [JsonProperty("indices")]
+        public int[] Indices { get; set; }
 
-        public string text { get; set; }
-        public int[] indices { get; set; }
-
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>
+        /// The text.
+        /// </value>
+        [JsonProperty("text")]
+        public string Text { get; set; }
     }
 }

@@ -1,73 +1,127 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Tweety.Models.Twitter
 {
-
+    /// <summary>
+    ///
+    /// </summary>
     public class MessageCreate
     {
-        public long id { get; set; }
-        public string id_str { get; set; }
-        public string text { get; set; }
-        public TwitterFullUser sender { get; set; }
-        public int sender_id { get; set; }
-        public string sender_id_str { get; set; }
-        public string sender_screen_name { get; set; }
-        public TwitterFullUser recipient { get; set; }
-        public long recipient_id { get; set; }
-        public string recipient_id_str { get; set; }
-        public string recipient_screen_name { get; set; }
-        public string created_at { get; set; }
-        public TwitterEntities entities { get; set; }
-    }
+        /// <summary>
+        /// Gets or sets the created at.
+        /// </summary>
+        /// <value>
+        /// The created at.
+        /// </value>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
 
-    public class TwitterFullUser
-    {
-        public long id { get; set; }
-        public string id_str { get; set; }
-        public string name { get; set; }
-        public string screen_name { get; set; }
-        public string location { get; set; }
-        public string description { get; set; }
-        public string url { get; set; }
-        public TwitterEntities entities { get; set; }
-        public bool _protected { get; set; }
-        public int followers_count { get; set; }
-        public int friends_count { get; set; }
-        public int listed_count { get; set; }
-        public string created_at { get; set; }
-        public int favourites_count { get; set; }
-        public string utc_offset { get; set; }
-        public string time_zone { get; set; }
-        public bool geo_enabled { get; set; }
-        public bool verified { get; set; }
-        public int statuses_count { get; set; }
-        public string lang { get; set; }
-        public bool contributors_enabled { get; set; }
-        public bool is_translator { get; set; }
-        public bool is_translation_enabled { get; set; }
-        public string profile_background_color { get; set; }
-        public string profile_background_image_url { get; set; }
-        public string profile_background_image_url_https { get; set; }
-        public bool profile_background_tile { get; set; }
-        public string profile_image_url { get; set; }
-        public string profile_image_url_https { get; set; }
-        public string profile_banner_url { get; set; }
-        public string profile_link_color { get; set; }
-        public string profile_sidebar_border_color { get; set; }
-        public string profile_sidebar_fill_color { get; set; }
-        public string profile_text_color { get; set; }
-        public bool profile_use_background_image { get; set; }
-        public bool has_extended_profile { get; set; }
-        public bool default_profile { get; set; }
-        public bool default_profile_image { get; set; }
-        public bool following { get; set; }
-        public bool follow_request_sent { get; set; }
-        public bool notifications { get; set; }
-        public string translator_type { get; set; }
+        /// <summary>
+        /// Gets or sets the entities.
+        /// </summary>
+        /// <value>
+        /// The entities.
+        /// </value>
+        [JsonProperty("entities")]
+        public TwitterEntities Entities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier string.
+        /// </summary>
+        /// <value>
+        /// The identifier string.
+        /// </value>
+        [JsonProperty("id_str")]
+        public string IdString { get; set; }
+
+        /// <summary>
+        /// Gets or sets the recipient.
+        /// </summary>
+        /// <value>
+        /// The recipient.
+        /// </value>
+        [JsonProperty("recipient")]
+        public TwitterFullUser Recipient { get; set; }
+
+        /// <summary>
+        /// Gets or sets the recipient identifier.
+        /// </summary>
+        /// <value>
+        /// The recipient identifier.
+        /// </value>
+        [JsonProperty("recipient_id")]
+        public long RecipientId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the recipient identifier string.
+        /// </summary>
+        /// <value>
+        /// The recipient identifier string.
+        /// </value>
+        [JsonProperty("recipient_id_str")]
+        public string RecipientIdString { get; set; }
+
+        /// <summary>
+        /// Gets or sets the screen name of the recipient .
+        /// </summary>
+        /// <value>
+        /// The name of the recipient screen.
+        /// </value>
+        [JsonProperty("recipient_screen_name")]
+        public string RecipientScreenName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sender.
+        /// </summary>
+        /// <value>
+        /// The sender.
+        /// </value>
+        [JsonProperty("sender")]
+        public TwitterFullUser Sender { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sender identifier.
+        /// </summary>
+        /// <value>
+        /// The sender identifier.
+        /// </value>
+        [JsonProperty("sender_id")]
+        public int SenderId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sender identifier string.
+        /// </summary>
+        /// <value>
+        /// The sender identifier string.
+        /// </value>
+        [JsonProperty("sender_id_str")]
+        public string SenderIdString { get; set; }
+
+        /// <summary>
+        /// Gets or sets the screen name of the sender .
+        /// </summary>
+        /// <value>
+        /// The name of the sender screen.
+        /// </value>
+        [JsonProperty("sender_screen_name")]
+        public string SenderScreenName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>
+        /// The text.
+        /// </value>
+        [JsonProperty("text")]
+        public string Text { get; set; }
     }
- 
- 
-    
 }

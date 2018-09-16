@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tweety.Authentication;
+﻿using Tweety.Authentication;
 
 namespace Tweety.Tests
 {
@@ -20,16 +15,14 @@ namespace Tweety.Tests
             ConsumerSecret = ""
         };
 
+        /// <summary>
+        /// Webhook Id to test against, Will be set in the RegisterWebhookTest.
+        /// </summary>
+        public static string RegsiteredWebhookId { get; set; } = "";
 
         /// <summary>
         /// Webhook Url to register.
         /// </summary>
         public static string WebhookUrl => "";
-
-
-        /// <summary>
-        /// Webhook Id to test against, Will be set in the RegisterWebhookTest. 
-        /// </summary>
-        public static string RegsiteredWebhookId { get; set; } = "";
     }
 }

@@ -8,13 +8,11 @@ using Tweety.Extensions;
 
 namespace Tweety.Authentication
 {
-
     /// <summary>
     /// Twitter Authentication helper.
     /// </summary>
     public class AuthHeaderBuilder
     {
-
         /// <summary>
         /// Returns a ready 'OAuth ..' prefixed header to set in any call to Twitter API.
         /// </summary>
@@ -24,7 +22,6 @@ namespace Tweety.Authentication
         /// <returns></returns>
         public static string Build(TweetyAuthContext authContext, HttpMethod method, string requestUrl)
         {
-
             if (!Uri.TryCreate(requestUrl, UriKind.RelativeOrAbsolute, out Uri resourceUri))
             {
                 throw new TweetyException("Invalid Resource Url format.");
@@ -88,6 +85,5 @@ namespace Tweety.Authentication
 
             return authHeader;
         }
-
     }
 }

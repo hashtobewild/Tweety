@@ -1,24 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Tweety.Webhooks;
-using Tweety.Models;
-using System.Security.Cryptography;
-using Newtonsoft.Json.Linq;
 
 namespace Tweety.Tests
 {
     [TestClass]
     public class WebhookInterceptorTests
     {
-
         [TestMethod]
         public async Task InterceptIncomingMessage_CRCTest()
         {
-
             string consumerKey = DateTime.Now.Ticks.ToString();
             string crcToken = Guid.NewGuid().ToString();
 
@@ -35,16 +31,13 @@ namespace Tweety.Tests
 
             string expectedToken = $"sha256={Convert.ToBase64String(computedHash)}";
 
-
             string actuallJson = await result.Response.Content.ReadAsStringAsync();
             JObject actuallJsonObject = JObject.Parse(actuallJson);
             string actuallToken = actuallJsonObject["response_token"].ToString();
 
             Assert.AreEqual(expectedToken, actuallToken);
             Assert.AreEqual(result.RequestMessage, crcRequestMessage);
-
         }
-
 
         [TestMethod]
         public async Task InterceptIncomingMessage_UnhandledTest()
@@ -59,6 +52,5 @@ namespace Tweety.Tests
             Assert.IsFalse(result.IsHandled);
             Assert.AreEqual(result.RequestMessage, emptyRequestMessage);
         }
-
     }
 }

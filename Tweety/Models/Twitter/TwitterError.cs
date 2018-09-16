@@ -1,30 +1,33 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Tweety.Models.Twitter
 {
 
+    /// <summary>
+    ///
+    /// </summary>
     public class TwitterError
     {
+        /// <summary>
+        /// Gets or sets the errors.
+        /// </summary>
+        /// <value>
+        /// The errors.
+        /// </value>
         [JsonProperty("errors")]
         public List<Error> Errors { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Join("\n", Errors.Select(err => $"Error Code: {err.Code}, Error Message: {err.Message}"));
         }
-    }
-
-    public class Error
-    {
-
-        [JsonProperty("code")]
-        public int Code { get; set; }
-
-        [JsonProperty("message")]
-        public string Message { get; set; }
     }
 }

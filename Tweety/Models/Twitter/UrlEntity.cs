@@ -1,14 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace Tweety.Models.Twitter
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class UrlEntity
     {
-        public string url { get; set; }
-        public string expanded_url { get; set; }
-        public string display_url { get; set; }
-        public int[] indices { get; set; }
+        /// <summary>
+        /// Gets or sets the display URL.
+        /// </summary>
+        /// <value>
+        /// The display URL.
+        /// </value>
+        [JsonProperty("display_url")]
+        public string DisplayUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the expanded URL.
+        /// </summary>
+        /// <value>
+        /// The expanded URL.
+        /// </value>
+        [JsonProperty("expanded_url")]
+        public string ExpandedUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the indices.
+        /// </summary>
+        /// <value>
+        /// The indices.
+        /// </value>
+        [JsonProperty("indices")]
+        public int[] Indices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

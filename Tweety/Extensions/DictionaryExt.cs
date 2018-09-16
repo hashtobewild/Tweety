@@ -6,6 +6,11 @@ namespace Tweety.Extensions
 {
     internal static class DictionaryExt
     {
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <param name="uri">The URI.</param>
+        /// <returns></returns>
         public static Dictionary<string, string> GetParams(this Uri uri)
         {
             try

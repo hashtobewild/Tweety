@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -11,21 +10,27 @@ using Tweety.Models.Twitter;
 
 namespace Tweety
 {
-
     /// <summary>
     /// Helper class to send Direct Message to twitter user using the screen name.
     /// </summary>
     public class DirectMessageSender
     {
-
-        public TweetyAuthContext AuthContext { get; set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DirectMessageSender"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public DirectMessageSender(TweetyAuthContext context)
         {
             AuthContext = context;
         }
 
-
+        /// <summary>
+        /// Gets or sets the authentication context.
+        /// </summary>
+        /// <value>
+        /// The authentication context.
+        /// </value>
+        public TweetyAuthContext AuthContext { get; set; }
         /// <summary>
         /// Send a direct message to User from the current user (using AuthContext).
         /// </summary>
@@ -36,7 +41,6 @@ namespace Tweety
         [Obsolete("Use SendAsync instead.")]
         public async Task<Result<MessageCreate>> Send(string toScreenName, string messageText)
         {
-
             //TODO: Provide a generic class to make Twitter API Requests.
 
             if (string.IsNullOrEmpty(messageText))
@@ -54,7 +58,6 @@ namespace Tweety
             HttpResponseMessage response;
             using (HttpClient client = new HttpClient())
             {
-
                 client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Post, resourceUrl));
 
                 response = await client.PostAsync(resourceUrl, new StringContent(""));
@@ -62,7 +65,6 @@ namespace Tweety
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-
                 string msgCreateJson = await response.Content.ReadAsStringAsync();
                 MessageCreate mCreateObj = JsonConvert.DeserializeObject<MessageCreate>(msgCreateJson);
                 return new Result<MessageCreate>(mCreateObj);
@@ -77,12 +79,11 @@ namespace Tweety
             }
             else
             {
-                //TODO: Provide a way to return httpstatus code 
+                //TODO: Provide a way to return httpstatus code
 
                 return new Result<MessageCreate>();
             }
         }
-
 
         /// <summary>
         /// Send a direct message to a user by userId, from the current user (using AuthContext).
@@ -92,7 +93,6 @@ namespace Tweety
         /// <returns></returns>
         public async Task<Result<DirectMessageResult>> SendAsync(long userId, string messageText)
         {
-
             //TODO: Provide a generic class to make Twitter API Requests.
 
             if (string.IsNullOrEmpty(messageText))
@@ -113,17 +113,14 @@ namespace Tweety
             string resourceUrl = $"https://api.twitter.com/1.1/direct_messages/events/new.json";
 
             NewDirectMessageObject newDmEvent = new NewDirectMessageObject();
-            newDmEvent.@event = new Event() { type = "message_create" };
-            newDmEvent.@event.message_create = new NewEvent_MessageCreate() { message_data = new NewEvent_MessageData { text = messageText }, target = new Target { recipient_id = userId.ToString() } };
+            newDmEvent.@event = new Event() { Type = "message_create" };
+            newDmEvent.@event.MessageCreate = new NewEvent_MessageCreate() { MessageData = new NewEvent_MessageData { Text = messageText }, Target = new Target { RecipientId = userId.ToString() } };
             string jsonObj = JsonConvert.SerializeObject(newDmEvent);
-
 
             HttpResponseMessage response;
             using (HttpClient client = new HttpClient())
             {
-
                 client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Post, resourceUrl));
-
 
                 response = await client.PostAsync(resourceUrl, new StringContent(jsonObj, Encoding.UTF8, "application/json"));
             }
@@ -144,14 +141,10 @@ namespace Tweety
             }
             else
             {
-                //TODO: Provide a way to return httpstatus code 
+                //TODO: Provide a way to return httpstatus code
 
                 return new Result<DirectMessageResult>();
             }
-             
         }
-
-
-
     }
 }

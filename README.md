@@ -8,7 +8,7 @@ Read more about it: https://dev.twitter.com/webhooks.
 
 
 # Before you start
-As of July, 20th 2017 - You have to request access to the webhook APIs from Twitter using this [Form](https://gnipinc.formstack.com/forms/account_activity_api_configuration_request_form), the process will take few day.
+As of July, 20th 2017 - You have to request access to the webhook APIs from Twitter using this [Form](https://gnipinc.formstack.com/forms/account_activity_api_configuration_request_form), the process will take few days.
 Anyways, check this page before you start: https://dev.twitter.com/webhooks/account-activity.
 
 
