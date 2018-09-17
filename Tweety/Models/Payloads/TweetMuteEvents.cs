@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Payloads
 {
@@ -26,6 +28,6 @@ namespace Tweety.Models.Payloads
         /// The tweet events.
         /// </value>
         [JsonProperty("mute_events")]
-        public BaseUserEvent[] MuteEvents { get; set; }
+        public List<BaseUserEvent> MuteEvents { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Tweety.Authentication;
-using Tweety.Models.Twitter;
+using Tweety.Models.Primitives;
 
 namespace Tweety.Webhooks
 {
@@ -29,6 +29,7 @@ namespace Tweety.Webhooks
         /// The authentication context.
         /// </value>
         public TweetyAuthContext AuthContext { get; set; }
+
         /// <summary>
         /// Checks if the current user (from the auth context) is subscribed to a webhook by Id.
         /// </summary>
@@ -120,6 +121,7 @@ namespace Tweety.Webhooks
                 return new Result<bool>();
             }
         }
+
         /// <summary>
         /// Unsubscribe current user (from the auth context) from a webhook by Id.
         /// </summary>

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{63BCF1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1B1BDF8E-DA37-4F03-BBC9-8E2EB5BD6210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweety.Tests", "Tweety.Tests\Tweety.Tests.csproj", "{C70D1903-9BB7-4A8A-B79B-7DBFC76721DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tweety.Tests", "Tweety.Tests\Tweety.Tests.csproj", "{C70D1903-9BB7-4A8A-B79B-7DBFC76721DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,5 +32,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E5EE35F3-040E-4225-AB1F-ED46A42697EC} = {63BCF10E-D539-4F67-91E3-601937294151}
 		{C70D1903-9BB7-4A8A-B79B-7DBFC76721DD} = {1B1BDF8E-DA37-4F03-BBC9-8E2EB5BD6210}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {928743CA-E9CD-4DE6-B855-92EC39108A21}
 	EndGlobalSection
 EndGlobal

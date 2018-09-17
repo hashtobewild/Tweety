@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Payloads
 {
@@ -17,7 +19,7 @@ namespace Tweety.Models.Payloads
         /// The tweet create events.
         /// </value>
         [JsonProperty("favorite_events")]
-        public FavoriteEvent[] FavoriteEvents { get; set; }
+        public List<FavoriteEvent> FavoriteEvents { get; set; }
 
         /// <summary>
         /// Gets or sets the for user (recipient) identifier.

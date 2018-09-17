@@ -1,0 +1,15 @@
+﻿{
+  "for_user_id": "2244994945",
+  "mute_events": [
+    {
+      "type": "mute",
+      "created_timestamp": "1518127020304",
+      "source": {
+        "<User" "Object>"
+      },
+      "target": {
+        "<User" "Object>"
+      }
+    }
+  ]
+}

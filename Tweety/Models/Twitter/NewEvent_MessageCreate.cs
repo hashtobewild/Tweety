@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Tweety.Models.Primitives;
 
 namespace Tweety.Models.Twitter
 {

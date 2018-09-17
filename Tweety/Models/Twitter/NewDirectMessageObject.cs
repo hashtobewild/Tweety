@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Twitter
 {

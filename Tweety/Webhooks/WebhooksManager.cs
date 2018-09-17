@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Tweety.Authentication;
+using Tweety.Models.Primitives;
 using Tweety.Models.Twitter;
 
 namespace Tweety.Webhooks
@@ -30,6 +31,7 @@ namespace Tweety.Webhooks
         /// The authentication context.
         /// </value>
         public TweetyAuthContext AuthContext { get; set; }
+
         /// <summary>
         /// Retrieve a list of <see cref="WebhookRegistration"/> associated with the user (from the auth context).
         /// </summary>

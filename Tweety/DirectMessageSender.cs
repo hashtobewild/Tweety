@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Tweety.Authentication;
 using Tweety.Models;
+using Tweety.Models.Events;
+using Tweety.Models.Primitives;
 using Tweety.Models.Twitter;
 
 namespace Tweety

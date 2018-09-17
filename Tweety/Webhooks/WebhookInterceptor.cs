@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Tweety.Extensions;
-using Tweety.Models;
+using Tweety.Models.Primitives;
 using Tweety.Models.Twitter;
 
 namespace Tweety.Webhooks
@@ -33,17 +33,18 @@ namespace Tweety.Webhooks
         /// Used to Hash incoming/ outgoing data.
         /// </summary>
         public string ConsumerSecret { get; set; }
+
         /// <summary>
         /// Intercept incoming requests to the server to handle them according to Twitter Documentation, Currently:
         ///     - Challenge Response Check.
         ///     - Incoming DirectMessage.
         /// </summary>
         /// <param name="requestMessage">Thr request message object you recieved.</param>
-        /// <param name="OnDirectMessageRecieved">If this is an incoming direct message, this callback will be fired along with the message object <see cref="DirectMessageEvent"/>.</param>
+        /// <param name="OnDirectMessageRecieved">If this is an incoming direct message, this callback will be fired along with the message object <see cref="Models.Events.DirectMessageEvent"/>.</param>
         /// <returns>
         /// <see cref="InterceptionResult"/> Interception result.
         /// </returns>
-        public async Task<InterceptionResult> InterceptIncomingRequest(HttpRequestMessage requestMessage, Action<DirectMessageEvent> OnDirectMessageRecieved)
+        public async Task<InterceptionResult> InterceptIncomingRequest(HttpRequestMessage requestMessage, Action<Models.Events.DirectMessageEvent> OnDirectMessageRecieved)
         {
             if (string.IsNullOrEmpty(ConsumerSecret))
             {
@@ -84,7 +85,7 @@ namespace Tweety.Webhooks
                 try
                 {
                     WebhookDMResult dmResult = JsonConvert.DeserializeObject<WebhookDMResult>(payload);
-                    DirectMessageEvent eventResult = dmResult;
+                    Models.Events.DirectMessageEvent eventResult = dmResult;
                     eventResult.JsonSource = payload;
 
                     OnDirectMessageRecieved?.Invoke(eventResult);
@@ -145,10 +146,8 @@ namespace Tweety.Webhooks
         {
             byte[] hashKeyArray = Encoding.UTF8.GetBytes(ConsumerSecret);
             HMACSHA256 hmacSHA256Alog = new HMACSHA256(hashKeyArray);
-
             byte[] computedHash = hmacSHA256Alog.ComputeHash(Encoding.UTF8.GetBytes(payload));
             string localHashedSignature = $"sha256={Convert.ToBase64String(computedHash)}";
-
             return localHashedSignature == twWebhookSignature;
         }
     }

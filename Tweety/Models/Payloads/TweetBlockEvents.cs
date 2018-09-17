@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Payloads
 {
@@ -17,7 +19,7 @@ namespace Tweety.Models.Payloads
         /// The tweet events.
         /// </value>
         [JsonProperty("block_events")]
-        public BaseUserEvent[] BlockEvents { get; set; }
+        public List<BaseUserEvent> BlockEvents { get; set; }
 
         /// <summary>
         /// Gets or sets the for user (recipient) identifier.

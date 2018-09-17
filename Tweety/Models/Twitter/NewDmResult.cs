@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Twitter
 {
@@ -14,6 +15,6 @@ namespace Tweety.Models.Twitter
         /// The event.
         /// </value>
         [JsonProperty("@event")]
-        public DMEvent @event { get; set; }
+        public DirectMessageEvent @event { get; set; }
     }
 }
