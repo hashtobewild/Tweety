@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents metadata relating to a twitter message
     /// </summary>
     public class Message_Data
     {

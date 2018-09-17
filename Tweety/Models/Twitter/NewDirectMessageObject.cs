@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a twitter direct message object
     /// </summary>
     public class NewDirectMessageObject
     {

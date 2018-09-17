@@ -37,6 +37,12 @@ namespace Tweety
             };
         }
 
+        /// <summary>
+        /// The <see cref="HttpResponseMessage"/> to return to the client if <see cref="IsHandled"/> is not true.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         internal static InterceptionResult CreateUnhandled(HttpResponseMessage response, HttpRequestMessage request)
         {
             return new InterceptionResult()

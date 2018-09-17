@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a variation of a twitter sizes entity
     /// </summary>
     public class TwitterSizeMedium
     {

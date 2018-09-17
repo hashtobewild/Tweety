@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a twitter symbol entity
     /// </summary>
     public class SymbolEntity
     {

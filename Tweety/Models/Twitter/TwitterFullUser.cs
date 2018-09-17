@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents an unabridged twitter user object
     /// </summary>
     public class TwitterFullUser
     {

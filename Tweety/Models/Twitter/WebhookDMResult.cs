@@ -6,7 +6,7 @@ using System.Linq;
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents the result of a direct message webhook
     /// </summary>
     public class WebhookDMResult
     {

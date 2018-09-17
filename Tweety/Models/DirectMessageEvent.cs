@@ -3,7 +3,7 @@
 namespace Tweety.Models
 {
     /// <summary>
-    ///
+    /// Represents a twitter direct message event
     /// </summary>
     /// <seealso cref="Tweety.Models.TwitterEvent" />
     public class DirectMessageEvent : TwitterEvent

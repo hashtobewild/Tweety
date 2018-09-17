@@ -2,6 +2,9 @@
 
 namespace Tweety.Models.Twitter
 {
+    /// <summary>
+    /// Represents the result of a twitter direct message
+    /// </summary>
     public class NewDmResult
     {
         /// <summary>

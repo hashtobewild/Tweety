@@ -4,7 +4,7 @@ using System;
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a direct message event
     /// </summary>
     public class DMEvent
     {

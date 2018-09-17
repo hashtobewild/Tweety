@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a webhook registration
     /// </summary>
     public class WebhookRegistration
     {

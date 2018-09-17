@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a twitter user mention entity
     /// </summary>
     public class UserMentionEntity
     {

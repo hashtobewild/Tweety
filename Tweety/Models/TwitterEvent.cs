@@ -3,12 +3,12 @@
 namespace Tweety.Models
 {
     /// <summary>
-    ///
+    /// Represents a twitter event
     /// </summary>
     public class TwitterEvent
     {
         /// <summary>
-        /// Gets the created.
+        /// Gets the created date.
         /// </summary>
         /// <value>
         /// The created.

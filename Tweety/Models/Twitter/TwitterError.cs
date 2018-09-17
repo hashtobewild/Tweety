@@ -6,7 +6,7 @@ namespace Tweety.Models.Twitter
 {
 
     /// <summary>
-    ///
+    /// Represents a twitter error
     /// </summary>
     public class TwitterError
     {

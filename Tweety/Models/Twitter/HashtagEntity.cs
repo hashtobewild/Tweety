@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents a twitter hashtag entity
     /// </summary>
     public class HashtagEntity
     {

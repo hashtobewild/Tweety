@@ -3,7 +3,7 @@
 namespace Tweety.Models.Twitter
 {
     /// <summary>
-    ///
+    /// Represents the response sent to a CRC challenge
     /// </summary>
     internal class CRCResponseToken
     {
