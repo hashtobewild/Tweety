@@ -22,7 +22,7 @@ namespace Tweety.Tests
             HttpRequestMessage crcRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://localhost?crc_token={crcToken}");
             WebhookInterceptor interceptor = new WebhookInterceptor(consumerKey);
 
-            InterceptionResult result = await interceptor.InterceptIncomingRequest(crcRequestMessage, null);
+            InterceptionResult result = await interceptor.InterceptIncomingRequest(crcRequestMessage);
 
             Assert.IsTrue(result.IsHandled);
 
@@ -48,7 +48,7 @@ namespace Tweety.Tests
 
             WebhookInterceptor interceptor = new WebhookInterceptor(consumerKey);
 
-            InterceptionResult result = await interceptor.InterceptIncomingRequest(emptyRequestMessage, null);
+            InterceptionResult result = await interceptor.InterceptIncomingRequest(emptyRequestMessage);
 
             Assert.IsFalse(result.IsHandled);
             Assert.AreEqual(result.RequestMessage, emptyRequestMessage);
