@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Tweety.Models.Primitives
 {
@@ -59,7 +60,7 @@ namespace Tweety.Models.Primitives
         /// The entities.
         /// </value>
         [JsonProperty("entities")]
-        public TwitterEntities Entities { get; set; }
+        public Entities Entities { get; set; }
 
         /// <summary>
         /// Gets or sets the favourites count.
@@ -330,6 +331,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("screen_name")]
         public string ScreenName { get; set; }
+
         /// <summary>
         /// Gets or sets the statuses count.
         /// </summary>
@@ -365,6 +367,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("url")]
         public string Url { get; set; }
+
         /// <summary>
         /// Gets or sets the UTC offset.
         /// </summary>
@@ -373,6 +376,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("utc_offset")]
         public string UtcOffset { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="TwitterFullUser"/> is verified.
         /// </summary>
@@ -381,5 +385,24 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("verified")]
         public bool Verified { get; set; }
+
+        /// <summary>
+        /// When present, indicates a list of uppercase two-letter country codes this content is withheld from. Twitter supports the following non-country values for this field:
+        /// “XX” - Content is withheld in all countries “XY” - Content is withheld due to a DMCA request.
+        /// </summary>
+        /// <value>
+        /// The withheld in countries.
+        /// </value>
+        [JsonProperty("withheld_in_countries")]
+        public List<string> WithheldInCountries { get; set; }
+
+        /// <summary>
+        /// When present, indicates that the content being withheld is a “user.”
+        /// </summary>
+        /// <value>
+        /// The withheld scope.
+        /// </value>
+        [JsonProperty("withheld_scope")]
+        public string WithheldScope { get; set; }
     }
 }

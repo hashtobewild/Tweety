@@ -1,25 +1,24 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Tweety.Models.Primitives;
+using Tweety.Models.Events;
 
 namespace Tweety.Models.Payloads
 {
     /// <summary>
     /// Account Activity API:
-    /// Tweet status payload when any of the following actions are taken by or to the subscription user: Tweets, Retweets, Replies, @mentions, QuoteTweets
+    /// Block event with the user and target.
     /// https://developer.twitter.com/en/docs/accounts-and-users/subscribe-account-activity/guides/account-activity-data-objects
-    /// tweet_create_events (Tweets, Retweets, Replies, @mentions, QuoteTweets)
+    /// block_events
     /// </summary>
-    public class TweetCreateEvents
+    public class BasePayload
     {
         /// <summary>
-        /// Gets or sets the tweet create events.
+        /// Gets or sets the json source (the original payload).
         /// </summary>
         /// <value>
-        /// The tweet create events.
+        /// The json source.
         /// </value>
-        [JsonProperty("tweet_create_events")]
-        public List<Tweet> CreateEvents { get; set; }
+        public List<BaseUserEvent> JsonSource { get; set; }
 
         /// <summary>
         /// Gets or sets the for user (recipient) identifier.

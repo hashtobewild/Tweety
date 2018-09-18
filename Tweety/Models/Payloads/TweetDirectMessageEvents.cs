@@ -20,7 +20,7 @@ namespace Tweety.Models.Payloads
         /// The apps.
         /// </value>
         [JsonProperty("apps")]
-        public Dictionary<string, TwitterAppData> Apps { get; set; }
+        public Dictionary<string, AppData> Apps { get; set; }
 
         /// <summary>
         /// Gets or sets the tweet events.
@@ -47,6 +47,6 @@ namespace Tweety.Models.Payloads
         /// The users.
         /// </value>
         [JsonProperty("users")]
-        public Dictionary<string, TwitterUser> Users { get; set; }
+        public Dictionary<string, User> Users { get; set; }
     }
 }

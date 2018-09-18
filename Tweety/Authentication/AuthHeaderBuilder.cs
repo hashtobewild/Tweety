@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using Tweety.Extensions;
+using Tweety.Models.Primitives;
 
 namespace Tweety.Authentication
 {

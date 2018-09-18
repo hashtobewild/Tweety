@@ -34,7 +34,7 @@ namespace Tweety.Models.Events
         /// The source.
         /// </value>
         [JsonProperty("source")]
-        public TwitterUser Source { get; set; }
+        public User Source { get; set; }
 
         /// <summary>
         /// Gets or sets the target.
@@ -43,6 +43,6 @@ namespace Tweety.Models.Events
         /// The target.
         /// </value>
         [JsonProperty("target")]
-        public TwitterUser Target { get; set; }
+        public User Target { get; set; }
     }
 }

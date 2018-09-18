@@ -14,7 +14,7 @@ namespace Tweety.Models.Primitives
         /// The media.
         /// </value>
         [JsonProperty("media")]
-        public MediaEntity Media { get; set; }
+        public Media Media { get; set; }
 
         /// <summary>
         /// Gets or sets the type.

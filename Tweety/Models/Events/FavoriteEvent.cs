@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using Tweety.Models.Primitives;
+using Tweety.Models.Twitter;
 
 namespace Tweety.Models.Events
 {
@@ -25,7 +26,7 @@ namespace Tweety.Models.Events
         /// The favorited status.
         /// </value>
         [JsonProperty("favorited_status")]
-        public TweetObject FavoritedStatus { get; set; }
+        public Tweet FavoritedStatus { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier.
@@ -52,6 +53,6 @@ namespace Tweety.Models.Events
         /// The user.
         /// </value>
         [JsonProperty("user")]
-        public TwitterUser User { get; set; }
+        public User User { get; set; }
     }
 }

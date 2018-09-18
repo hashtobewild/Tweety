@@ -5,12 +5,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Tweety.Authentication;
-using Tweety.Models;
 using Tweety.Models.Events;
 using Tweety.Models.Primitives;
 using Tweety.Models.Twitter;
 
-namespace Tweety
+namespace Tweety.Helpers
 {
     /// <summary>
     /// Helper class to send Direct Message to twitter user using the screen name.
@@ -33,6 +32,7 @@ namespace Tweety
         /// The authentication context.
         /// </value>
         public TweetyAuthContext AuthContext { get; set; }
+
         /// <summary>
         /// Send a direct message to User from the current user (using AuthContext).
         /// </summary>
@@ -93,60 +93,60 @@ namespace Tweety
         /// <param name="userId">The Twitter User Id to send the message to.</param>
         /// <param name="messageText">The text of the message, should be less than 10,000 chars.</param>
         /// <returns></returns>
-        public async Task<Result<DirectMessageResult>> SendAsync(long userId, string messageText)
-        {
-            //TODO: Provide a generic class to make Twitter API Requests.
+        //public async Task<Result<DirectMessageResult>> SendAsync(long userId, string messageText)
+        //{
+        //    //TODO: Provide a generic class to make Twitter API Requests.
 
-            if (string.IsNullOrEmpty(messageText))
-            {
-                throw new TweetyException("You can't send an empty message.");
-            }
+        //    if (string.IsNullOrEmpty(messageText))
+        //    {
+        //        throw new TweetyException("You can't send an empty message.");
+        //    }
 
-            if (messageText.Length > 10000)
-            {
-                throw new TweetyException("Invalid message, the length of the message should be less than 10000 chars.");
-            }
+        //    if (messageText.Length > 10000)
+        //    {
+        //        throw new TweetyException("Invalid message, the length of the message should be less than 10000 chars.");
+        //    }
 
-            if (userId == default(long))
-            {
-                throw new TweetyException("Invalid userId.");
-            }
+        //    if (userId == default(long))
+        //    {
+        //        throw new TweetyException("Invalid userId.");
+        //    }
 
-            string resourceUrl = $"https://api.twitter.com/1.1/direct_messages/events/new.json";
+        //    string resourceUrl = $"https://api.twitter.com/1.1/direct_messages/events/new.json";
 
-            NewDirectMessageObject newDmEvent = new NewDirectMessageObject();
-            newDmEvent.@event = new Event() { Type = "message_create" };
-            newDmEvent.@event.MessageCreate = new NewEvent_MessageCreate() { MessageData = new NewEvent_MessageData { Text = messageText }, Target = new Target { RecipientId = userId.ToString() } };
-            string jsonObj = JsonConvert.SerializeObject(newDmEvent);
+        //    NewDirectMessageObject newDmEvent = new NewDirectMessageObject();
+        //    newDmEvent.@event = new Event() { Type = "message_create" };
+        //    newDmEvent.@event.MessageCreate = new NewEvent_MessageCreate() { MessageData = new NewEvent_MessageData { Text = messageText }, Target = new Target { RecipientId = userId.ToString() } };
+        //    string jsonObj = JsonConvert.SerializeObject(newDmEvent);
 
-            HttpResponseMessage response;
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Post, resourceUrl));
+        //    HttpResponseMessage response;
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Post, resourceUrl));
 
-                response = await client.PostAsync(resourceUrl, new StringContent(jsonObj, Encoding.UTF8, "application/json"));
-            }
+        //        response = await client.PostAsync(resourceUrl, new StringContent(jsonObj, Encoding.UTF8, "application/json"));
+        //    }
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                string msgCreateJson = await response.Content.ReadAsStringAsync();
-                NewDmResult mCreateObj = JsonConvert.DeserializeObject<NewDmResult>(msgCreateJson);
-                return new Result<DirectMessageResult>(mCreateObj.@event);
-            }
+        //    if (response.StatusCode == HttpStatusCode.OK)
+        //    {
+        //        string msgCreateJson = await response.Content.ReadAsStringAsync();
+        //        NewDmResult mCreateObj = JsonConvert.DeserializeObject<NewDmResult>(msgCreateJson);
+        //        return new Result<DirectMessageResult>(mCreateObj.@event);
+        //    }
 
-            string jsonResponse = await response.Content.ReadAsStringAsync();
+        //    string jsonResponse = await response.Content.ReadAsStringAsync();
 
-            if (!string.IsNullOrEmpty(jsonResponse))
-            {
-                TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
-                return new Result<DirectMessageResult>(err);
-            }
-            else
-            {
-                //TODO: Provide a way to return httpstatus code
+        //    if (!string.IsNullOrEmpty(jsonResponse))
+        //    {
+        //        TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
+        //        return new Result<DirectMessageResult>(err);
+        //    }
+        //    else
+        //    {
+        //        //TODO: Provide a way to return httpstatus code
 
-                return new Result<DirectMessageResult>();
-            }
-        }
+        //        return new Result<DirectMessageResult>();
+        //    }
+        //}
     }
 }

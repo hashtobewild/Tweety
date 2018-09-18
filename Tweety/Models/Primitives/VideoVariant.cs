@@ -2,27 +2,24 @@
 
 namespace Tweety.Models.Primitives
 {
-    /// <summary>
-    /// App identifier object
-    /// </summary>
-    public class TwitterAppData
+    public class VideoVariant
     {
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets or sets the bitrate.
         /// </summary>
         /// <value>
-        /// The identifier.
+        /// The bitrate.
         /// </value>
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("bitrate")]
+        public long Bitrate { get; set; }
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the type of the content.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The type of the content.
         /// </value>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("content_type")]
+        public string ContentType { get; set; }
         /// <summary>
         /// Gets or sets the URL.
         /// </summary>

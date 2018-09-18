@@ -49,7 +49,6 @@ namespace Tweety.Webhooks
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Get, resourceUrl));
-
                 response = await client.GetAsync(resourceUrl);
             }
 
@@ -59,8 +58,7 @@ namespace Tweety.Webhooks
             {
                 return new Result<bool>(true);
             }
-
-            if (!string.IsNullOrEmpty(jsonResponse))
+            else if (!string.IsNullOrEmpty(jsonResponse))
             {
                 TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
                 if (err.Errors.Count == 1 && err.Errors[0].Code == 34)
@@ -98,7 +96,6 @@ namespace Tweety.Webhooks
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Post, resourceUrl));
-
                 response = await client.PostAsync(resourceUrl, new StringContent(""));
             }
 
@@ -117,7 +114,6 @@ namespace Tweety.Webhooks
             else
             {
                 //TODO: Provide a way to return httpstatus code
-
                 return new Result<bool>();
             }
         }
@@ -141,7 +137,6 @@ namespace Tweety.Webhooks
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("Authorization", AuthHeaderBuilder.Build(AuthContext, HttpMethod.Delete, resourceUrl));
-
                 response = await client.DeleteAsync(resourceUrl);
             }
 
@@ -151,8 +146,7 @@ namespace Tweety.Webhooks
             {
                 return new Result<bool>(true);
             }
-
-            if (!string.IsNullOrEmpty(jsonResponse))
+            else if (!string.IsNullOrEmpty(jsonResponse))
             {
                 TwitterError err = JsonConvert.DeserializeObject<TwitterError>(jsonResponse);
                 if (err.Errors.Count == 1 && err.Errors[0].Code == 34)

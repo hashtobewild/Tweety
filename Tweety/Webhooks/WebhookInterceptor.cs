@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Tweety.Extensions;
+using Tweety.Models.Payloads;
 using Tweety.Models.Primitives;
 using Tweety.Models.Twitter;
 
@@ -19,8 +20,48 @@ namespace Tweety.Webhooks
     public class WebhookInterceptor
     {
         /// <summary>
+        /// Occurs when [on block received].
+        /// </summary>
+        public event BlockEventReceivedEventHandler OnBlockReceived;
+        /// <summary>
+        /// Occurs when [on create received].
+        /// </summary>
+        public event CreateEventReceivedEventHandler OnCreateReceived;
+        /// <summary>
+        /// Occurs when [on delete received].
+        /// </summary>
+        public event DeleteEventReceivedEventHandler OnDeleteReceived;
+        /// <summary>
+        /// Occurs when [on direct message received].
+        /// </summary>
+        public event DirectMessageEventReceivedEventHandler OnDirectMessageReceived;
+        /// <summary>
+        /// Occurs when [on direct message typing indicate received].
+        /// </summary>
+        public event DirectMessageIndicateTypingEventReceivedEventHandler OnDirectMessageTypingIndicateReceived;
+        /// <summary>
+        /// Occurs when [on direct message mark read received].
+        /// </summary>
+        public event DirectMessageMarkReadEventReceivedEventHandler OnDirectMessageMarkReadReceived;
+        /// <summary>
+        /// Occurs when [on favorite received].
+        /// </summary>
+        public event FavoriteEventReceivedEventHandler OnFavoriteReceived;
+        /// <summary>
+        /// Occurs when [on follow received].
+        /// </summary>
+        public event FollowEventReceivedEventHandler OnFollowReceived;
+        /// <summary>
+        /// Occurs when [on mute received].
+        /// </summary>
+        public event MuteEventReceivedEventHandler OnMuteReceived;
+        /// <summary>
+        /// Occurs when [on user event received].
+        /// </summary>
+        public event UserEventReceivedEventHandler OnUserEventReceived;
+                
+        /// <summary>
         /// Create a new instance of <see cref="WebhookInterceptor"/> with your Twitter App Consumer Key.
-        ///
         /// </summary>
         /// <param name="consumerSecret">Twitter App Consumer Key, used for hashing.</param>
         public WebhookInterceptor(string consumerSecret)
@@ -44,34 +85,21 @@ namespace Tweety.Webhooks
         /// <returns>
         /// <see cref="InterceptionResult"/> Interception result.
         /// </returns>
-        public async Task<InterceptionResult> InterceptIncomingRequest(HttpRequestMessage requestMessage, Action<Models.Events.DirectMessageEvent> OnDirectMessageRecieved)
+        public async Task<InterceptionResult> InterceptIncomingRequest(HttpRequestMessage requestMessage)
         {
             if (string.IsNullOrEmpty(ConsumerSecret))
             {
                 throw new TweetyException("Consumer Secret can't be null.");
             }
-
-            if (requestMessage.Method == HttpMethod.Get)
+            else if (requestMessage.Method == HttpMethod.Get && requestMessage.RequestUri.GetParams().ContainsKey("crc_token"))
             {
-                Dictionary<string, string> requestParams = requestMessage.RequestUri.GetParams();
-                if (!requestParams.ContainsKey("crc_token"))
-                {
-                    goto Finally;
-                }
-
                 // Challenge Response Check Request:
-                string crcToken = requestParams["crc_token"];
+                string crcToken = requestMessage.RequestUri.GetParams()["crc_token"];
                 HttpResponseMessage response = AcceptChallenge(crcToken);
-
                 return InterceptionResult.CreateHandled(response, requestMessage);
             }
-            else if (requestMessage.Method == HttpMethod.Post)
+            else if (requestMessage.Method == HttpMethod.Post && requestMessage.Headers.Contains("x-twitter-webhooks-signature"))
             {
-                if (!requestMessage.Headers.Contains("x-twitter-webhooks-signature"))
-                {
-                    goto Finally;
-                }
-
                 string payloadSignature = requestMessage.Headers.GetValues("x-twitter-webhooks-signature").First();
                 string payload = await requestMessage.Content.ReadAsStringAsync();
 
@@ -81,24 +109,82 @@ namespace Tweety.Webhooks
                     //This is interseting, a twitter signature key 'x-twitter-webhooks-signature' is there but it's wrong..!
                     return InterceptionResult.CreateHandled(new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest), requestMessage);
                 }
-
-                try
+                else
                 {
-                    WebhookDMResult dmResult = JsonConvert.DeserializeObject<WebhookDMResult>(payload);
-                    Models.Events.DirectMessageEvent eventResult = dmResult;
-                    eventResult.JsonSource = payload;
-
-                    OnDirectMessageRecieved?.Invoke(eventResult);
-                }
-                catch
-                {
-                    //Failed to deserialize twitter direct message,
-                    //TODO: Handle in a better way.. perhaps send the json?
+                    try
+                    {
+                        // Instead of brute forcing the cast, do an intermediate cast to Dictionary<string, dynamic>, which should always work and lets us interogate it
+                        Dictionary<string, dynamic> intermediate = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(payload);
+                        if (intermediate.ContainsKey("tweet_create_events"))
+                        {
+                            // tweet_create_events 
+                            OnCreateReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetCreateEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("favorite_events"))
+                        {
+                            // favorite_events
+                            OnFavoriteReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetFavoriteEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("follow_events"))
+                        {
+                            // follow_events
+                            OnFollowReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetFollowEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("block_events"))
+                        {
+                            // block_events
+                            OnBlockReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetBlockEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("mute_events"))
+                        {
+                            // mute_events
+                            OnMuteReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetMuteEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("user_event"))
+                        {
+                            // user_event
+                            OnUserEventReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetUserEvent>(payload));
+                        }
+                        else if (intermediate.ContainsKey("direct_message_events"))
+                        {
+                            // direct_message_events
+                            OnDirectMessageReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetDirectMessageEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("direct_message_indicate_typing_events"))
+                        {
+                            // direct_message_indicate_typing_events
+                            OnDirectMessageTypingIndicateReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetDirectMessageIndicateTypingEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("direct_message_mark_read_events"))
+                        {
+                            // direct_message_mark_read_events
+                            OnDirectMessageMarkReadReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetDirectMessageMarkReadEvents>(payload));
+                        }
+                        else if (intermediate.ContainsKey("tweet_delete_events"))
+                        {
+                            // tweet_delete_events
+                            OnDeleteReceived?.Invoke(this, JsonConvert.DeserializeObject<TweetDeletedEvents>(payload));
+                        }
+                        else
+                        {
+                            // nafc what this is...?! Maybe someone else does... so leave it unhandled
+                            return InterceptionResult.CreateUnhandled(OK(), requestMessage);
+                        }
+                        // Looks like it worked...
+                        return InterceptionResult.CreateHandled(OK(), requestMessage);
+                    }
+                    catch
+                    {
+                        //Failed to deserialize twitter direct message,
+                        //TODO: Handle in a better way.. perhaps send the json?
+                        return InterceptionResult.CreateHandled(new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest), requestMessage);
+                    }
                 }
             }
-
-            Finally:
-            return InterceptionResult.CreateUnhandled(OK(), requestMessage);
+            else
+            {
+                return InterceptionResult.CreateUnhandled(OK(), requestMessage);
+            }
         }
 
         /// <summary>
@@ -117,20 +203,14 @@ namespace Tweety.Webhooks
         {
             byte[] hashKeyArray = Encoding.UTF8.GetBytes(ConsumerSecret);
             byte[] crcTokenArray = Encoding.UTF8.GetBytes(crcToken);
-
             HMACSHA256 hmacSHA256Alog = new HMACSHA256(hashKeyArray);
-
             byte[] computedHash = hmacSHA256Alog.ComputeHash(crcTokenArray);
-
             string challengeToken = $"sha256={Convert.ToBase64String(computedHash)}";
-
             CRCResponseToken responseToken = new CRCResponseToken()
             {
                 Token = challengeToken
             };
-
             string jsonResponse = JsonConvert.SerializeObject(responseToken);
-
             return OK(jsonResponse);
         }
 
@@ -151,4 +231,6 @@ namespace Tweety.Webhooks
             return localHashedSignature == twWebhookSignature;
         }
     }
+
+
 }

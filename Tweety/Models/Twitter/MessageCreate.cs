@@ -24,7 +24,7 @@ namespace Tweety.Models.Twitter
         /// The entities.
         /// </value>
         [JsonProperty("entities")]
-        public TwitterEntities Entities { get; set; }
+        public Entities Entities { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier.

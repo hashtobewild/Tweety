@@ -3,21 +3,22 @@
 namespace Tweety.Models.Primitives
 {
     /// <summary>
-    /// Represents a twitter hashtag entity
+    /// A poll option
+    /// https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/entities-object#polls
     /// </summary>
-    public class HashtagEntity
+    public class Option
     {
         /// <summary>
-        /// Gets or sets the indices.
+        /// Gets or sets the position of the option in the poll.
         /// </summary>
         /// <value>
-        /// The indices.
+        /// The position.
         /// </value>
-        [JsonProperty("indices")]
-        public int[] Indices { get; set; }
+        [JsonProperty("position")]
+        public int Position { get; set; }
 
         /// <summary>
-        /// Gets or sets the text.
+        /// Gets or sets the option text.
         /// </summary>
         /// <value>
         /// The text.

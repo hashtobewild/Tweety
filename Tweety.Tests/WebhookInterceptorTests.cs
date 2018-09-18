@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Tweety.Models.Primitives;
 using Tweety.Webhooks;
 
 namespace Tweety.Tests

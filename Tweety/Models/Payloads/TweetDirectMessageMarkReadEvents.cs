@@ -38,6 +38,6 @@ namespace Tweety.Models.Payloads
         /// The users.
         /// </value>
         [JsonProperty("users")]
-        public Dictionary<string, TwitterUser> Users { get; set; }
+        public Dictionary<string, User> Users { get; set; }
     }
 }

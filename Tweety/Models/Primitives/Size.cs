@@ -3,12 +3,12 @@
 namespace Tweety.Models.Primitives
 {
     /// <summary>
-    /// Represents a variation of a twitter sizes entity
+    /// An object showing available sizes for the media file.
     /// </summary>
-    public class TwitterSizeThumb
+    public class Size
     {
         /// <summary>
-        /// Gets or sets the height.
+        /// Height in pixels of this size.
         /// </summary>
         /// <value>
         /// The height.
@@ -17,7 +17,7 @@ namespace Tweety.Models.Primitives
         public int Height { get; set; }
 
         /// <summary>
-        /// Gets or sets the resize.
+        /// Resizing method used to obtain this size. A value of fit means that the media was resized to fit one dimension, keeping its native aspect ratio. A value of crop means that the media was cropped in order to fit a specific resolution.
         /// </summary>
         /// <value>
         /// The resize.
@@ -26,7 +26,7 @@ namespace Tweety.Models.Primitives
         public string Resize { get; set; }
 
         /// <summary>
-        /// Gets or sets the width.
+        /// Width in pixels of this size.
         /// </summary>
         /// <value>
         /// The width.

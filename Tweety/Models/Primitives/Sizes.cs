@@ -3,44 +3,45 @@
 namespace Tweety.Models.Primitives
 {
     /// <summary>
-    /// Represents a twitter sizes entity
+    /// All Tweets with native media (photos, video, and GIFs) will include a set of ‘thumb’, ‘small’, ‘medium’, and ‘large’ sizes with height and width pixel sizes.
+    /// https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/entities-object#size
     /// </summary>
     public class Sizes
     {
         /// <summary>
-        /// Gets or sets the large.
+        /// Information for a large-sized version of the media.
         /// </summary>
         /// <value>
         /// The large.
         /// </value>
         [JsonProperty("large")]
-        public TwitterSizeLarge Large { get; set; }
+        public Size Large { get; set; }
 
         /// <summary>
-        /// Gets or sets the medium.
+        /// Information for a medium-sized version of the media.
         /// </summary>
         /// <value>
         /// The medium.
         /// </value>
         [JsonProperty("medium")]
-        public TwitterSizeMedium Medium { get; set; }
+        public Size Medium { get; set; }
 
         /// <summary>
-        /// Gets or sets the small.
+        /// Information for a small-sized version of the media.
         /// </summary>
         /// <value>
         /// The small.
         /// </value>
         [JsonProperty("small")]
-        public TwitterSizeSmall Small { get; set; }
+        public Size Small { get; set; }
 
         /// <summary>
-        /// Gets or sets the thumb.
+        /// Information for a thumbnail-sized version of the media. 
         /// </summary>
         /// <value>
         /// The thumb.
         /// </value>
         [JsonProperty("thumb")]
-        public TwitterSizeThumb Thumb { get; set; }
+        public Size Thumb { get; set; }
     }
 }
