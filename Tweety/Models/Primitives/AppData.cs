@@ -15,6 +15,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("id")]
         public string Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -23,6 +24,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("name")]
         public string Name { get; set; }
+
         /// <summary>
         /// Gets or sets the URL.
         /// </summary>

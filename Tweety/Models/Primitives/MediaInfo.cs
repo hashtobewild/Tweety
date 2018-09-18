@@ -10,14 +10,6 @@ namespace Tweety.Models.Primitives
     public class MediaInfo
     {
         /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>
-        /// The title.
-        /// </value>
-        [JsonProperty("title")]
-        public string Title { get; set; }
-        /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>
@@ -25,6 +17,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("description")]
         public string Description { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="MediaInfo"/> is embeddable.
         /// </summary>
@@ -33,6 +26,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("embeddable")]
         public bool Embeddable { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="MediaInfo"/> is monetizable.
         /// </summary>
@@ -41,5 +35,14 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("monetizable")]
         public bool Monetizable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>
+        /// The title.
+        /// </value>
+        [JsonProperty("title")]
+        public string Title { get; set; }
     }
 }

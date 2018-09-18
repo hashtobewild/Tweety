@@ -19,7 +19,7 @@ namespace Tweety.Models.Primitives
         public List<int> Indices { get; set; }
 
         /// <summary>
-        /// Name of the hashtag, minus the leading ‘#’ character. 
+        /// Name of the hashtag, minus the leading ‘#’ character.
         /// </summary>
         /// <value>
         /// The text.

@@ -21,7 +21,6 @@ namespace Tweety.Extensions
                 {
                     keyValues.Add(Uri.UnescapeDataString(m.Groups[2].Value), Uri.UnescapeDataString(m.Groups[3].Value));
                 }
-
                 return keyValues;
             }
             catch (Exception ex)

@@ -11,6 +11,15 @@ namespace Tweety.Models.Primitives
     public class Media
     {
         /// <summary>
+        /// Gets or sets the additional media information.
+        /// </summary>
+        /// <value>
+        /// The additional media information.
+        /// </value>
+        [JsonProperty("additional_media_info")]
+        public MediaInfo AdditionalMediaInfo { get; set; }
+
+        /// <summary>
         /// URL of the media to display to clients.
         /// </summary>
         /// <value>
@@ -126,15 +135,5 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("video_info")]
         public MediaVideoInfo VideoInfo { get; set; }
-
-        /// <summary>
-        /// Gets or sets the additional media information.
-        /// </summary>
-        /// <value>
-        /// The additional media information.
-        /// </value>
-        [JsonProperty("additional_media_info")]
-        public MediaInfo AdditionalMediaInfo { get; set; }
-
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace Tweety.Models.Primitives
 {
-
     /// <summary>
     /// Represents a twitter error
     /// </summary>

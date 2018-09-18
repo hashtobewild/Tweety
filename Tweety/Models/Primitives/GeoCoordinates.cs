@@ -19,13 +19,12 @@ namespace Tweety.Models.Primatives
         public List<float> Coordinates { get; set; }
 
         /// <summary>
-        /// The type of data encoded in the coordinates property. This will be “Point” for Tweet coordinates fields. 
+        /// The type of data encoded in the coordinates property. This will be “Point” for Tweet coordinates fields.
         /// </summary>
         /// <value>
         /// The type.
         /// </value>
         [JsonProperty("type")]
         public string Type { get; set; }
-
     }
 }

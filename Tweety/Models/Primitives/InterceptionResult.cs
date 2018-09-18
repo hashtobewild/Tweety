@@ -27,6 +27,7 @@ namespace Tweety.Models.Primitives
         /// If  <see cref="IsHandled"/> is false, this will be empty <see cref="HttpResponseMessage"/> with status code: <see cref="HttpStatusCode.OK"/>.
         /// </summary>
         public HttpResponseMessage Response { get; internal set; }
+
         internal static InterceptionResult CreateHandled(HttpResponseMessage response, HttpRequestMessage request)
         {
             return new InterceptionResult()

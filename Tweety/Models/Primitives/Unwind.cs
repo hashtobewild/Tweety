@@ -8,30 +8,6 @@ namespace Tweety.Models.Primitives
     public class Unwind
     {
         /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
-        [JsonProperty("url")]
-        public string Url { get; set; }
-        /// <summary>
-        /// Gets or sets the status.
-        /// </summary>
-        /// <value>
-        /// The status.
-        /// </value>
-        [JsonProperty("status")]
-        public int Status { get; set; }
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
-        /// <value>
-        /// The title.
-        /// </value>
-        [JsonProperty("title")]
-        public string Title { get; set; }
-        /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>
@@ -40,5 +16,31 @@ namespace Tweety.Models.Primitives
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        [JsonProperty("status")]
+        public int Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>
+        /// The title.
+        /// </value>
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

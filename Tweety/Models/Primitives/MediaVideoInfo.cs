@@ -16,6 +16,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("aspect_ratio")]
         public List<int> AspectRatio { get; set; }
+
         /// <summary>
         /// Gets or sets the duration in milliseconds.
         /// </summary>
@@ -24,6 +25,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("duration_millis")]
         public long DurationMillis { get; set; }
+
         /// <summary>
         /// Gets or sets the video variants.
         /// </summary>

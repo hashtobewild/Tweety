@@ -12,6 +12,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("bitrate")]
         public long Bitrate { get; set; }
+
         /// <summary>
         /// Gets or sets the type of the content.
         /// </summary>
@@ -20,6 +21,7 @@ namespace Tweety.Models.Primitives
         /// </value>
         [JsonProperty("content_type")]
         public string ContentType { get; set; }
+
         /// <summary>
         /// Gets or sets the URL.
         /// </summary>

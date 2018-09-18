@@ -36,7 +36,7 @@ namespace Tweety.Models.Primitives
         public Size Small { get; set; }
 
         /// <summary>
-        /// Information for a thumbnail-sized version of the media. 
+        /// Information for a thumbnail-sized version of the media.
         /// </summary>
         /// <value>
         /// The thumb.
