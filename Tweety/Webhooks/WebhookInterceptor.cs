@@ -59,6 +59,10 @@ namespace Tweety.Webhooks
         /// Occurs when [on user event received].
         /// </summary>
         public event UserEventReceivedEventHandler OnUserEventReceived;
+        /// <summary>
+        /// Occurs when [on raw json received].
+        /// </summary>
+        public event RawJsonReceivedEventHandler OnRawJsonReceived;
                 
         /// <summary>
         /// Create a new instance of <see cref="WebhookInterceptor"/> with your Twitter App Consumer Key.
@@ -81,7 +85,6 @@ namespace Tweety.Webhooks
         ///     - Incoming DirectMessage.
         /// </summary>
         /// <param name="requestMessage">Thr request message object you recieved.</param>
-        /// <param name="OnDirectMessageRecieved">If this is an incoming direct message, this callback will be fired along with the message object <see cref="Models.Events.DirectMessageEvent"/>.</param>
         /// <returns>
         /// <see cref="InterceptionResult"/> Interception result.
         /// </returns>
@@ -113,6 +116,11 @@ namespace Tweety.Webhooks
                 {
                     try
                     {
+                        // Emit a raw json dump if needed
+                        if (!string.IsNullOrEmpty(payload))
+                        {
+                            OnRawJsonReceived?.Invoke(this, payload);
+                        }
                         // Instead of brute forcing the cast, do an intermediate cast to Dictionary<string, dynamic>, which should always work and lets us interogate it
                         Dictionary<string, dynamic> intermediate = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(payload);
                         if (intermediate.ContainsKey("tweet_create_events"))

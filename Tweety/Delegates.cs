@@ -65,4 +65,10 @@ namespace Tweety
     /// <param name="sender">The sender.</param>
     /// <param name="e">The event parameters.</param>
     public delegate void UserEventReceivedEventHandler(Object sender, TweetUserEvent e);
+    /// <summary>
+    /// The delegate for an event emitted wto dump the raw JSON received
+    /// </summary>
+    /// <param name="sender">The sender.</param>
+    /// <param name="e">The e.</param>
+    public delegate void RawJsonReceivedEventHandler(Object sender, string e);
 }
